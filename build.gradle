@@ -1,0 +1,40 @@
+plugins {
+  id 'java'
+  id 'maven-publish'
+  id "com.palantir.git-version" version "0.12.0-rc2"
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+  mavenLocal()
+  jcenter()
+}
+
+test {
+  useTestNG()
+}
+
+dependencies {
+  implementation "org.slf4j:slf4j-log4j12:1.7.12"
+  implementation 'com.google.guava:guava:23.0'
+
+  testImplementation "org.testng:testng:6.14.3"
+  testImplementation "org.mockito:mockito-core:1.10.19"
+  testImplementation "org.apache.logging.log4j:log4j-slf4j18-impl:2.11.1"
+
+  group = "com.dronjax.java"
+  version = "1.0.0"
+
+  publishing {
+    publications {
+      mavenJava(MavenPublication) {
+        artifactId "object-shutdown-proxy"
+      }
+    }
+    repositories {
+    }
+  }
+}
+
